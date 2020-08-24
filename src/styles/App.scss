@@ -1,0 +1,25 @@
+@import 'Login';
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Libre Baskerville', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background: linear-gradient(to bottom right, rgba(89, 211, 123, 0.7), rgba(0, 200, 83, 0.8) );
+}
+
+
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
