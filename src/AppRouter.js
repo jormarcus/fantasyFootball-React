@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom';
-import { MergedAuth } from './components';
+import { HomePage, MergedAuth } from './components';
 
 class AppRouter extends React.Component {
   render() {
     // const { isLoggedIn } = this.props
     return (
       <Switch>
-        <Route path="/" exact component={MergedAuth} />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/login" exact component={MergedAuth} />
       </Switch>
     );
   }

@@ -5,7 +5,7 @@
 }
 
 .login-container {
-  background: #C7ECD2;
+  background: linear-gradient(to bottom right, rgba(89, 211, 123, 0.7), rgba(0, 200, 83, 0.8) );
   height: 390px;
   width: 530px;
   border-radius: 4px;
@@ -22,7 +22,6 @@
 }
 
 .sign-in-title {
-  color: #4caf50;
   margin: 0;
   position: absolute;
   top: 12%;

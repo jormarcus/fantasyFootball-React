@@ -16,10 +16,73 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
-  background: linear-gradient(to bottom right, rgba(89, 211, 123, 0.7), rgba(0, 200, 83, 0.8) );
+  background: #f8f8f8;
 }
-
 
 .margin-bottom-15 {
   margin-bottom: 15px;
 }
+
+.home-container {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-areas:
+    "draft-tracker draft-tracker draft-tracker draft-tracker"
+    "roster draft-suggestions draft-suggestions draft-log"
+    "cheat-sheets cheat-sheets cheat-sheets draft-log"
+  }
+  .draft-tracker {
+    grid-area: draft-tracker;
+    background: rgb(126, 211, 122);
+  }
+  .roster {
+    grid-area: roster;
+    background: rgb(116, 202, 222);
+  }
+  .draft-suggestions {
+    grid-area: draft-suggestions;
+    background: #eee;
+  }
+  .draft-log {
+    grid-area: draft-log;
+    background: rgb(233, 182, 182);
+  }
+  .cheat-sheets {
+    grid-area: cheat-sheets;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    background: rgb(103, 107, 206);
+  }
+
+.cheat-col-hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+
+// @media (min-width: 500px) {
+//   .home-container {
+//     grid-template-columns: 1fr 3fr;
+//     grid-template-areas: 
+//     'draft-tracker' 'draft-tracker'
+//     'draft-log' 'roster'
+//     'draft-suggestions' 'draft-suggestions'
+//     'cheat-sheets' 'cheat-sheets'
+//   }
+// }
+
+// @media (min-width: 700px) {
+//   .home-container {
+//     grid-template-columns: 1fr 4fr 1fr;
+//     grid-template-areas: 
+//     'draft-tracker' 'draft-tracker' 'draft-tracker'
+//     'roster' 'draft-suggestions' 'draft-log'
+//     'cheat-sheets' 'cheat-sheets' 'cheat-sheets'
+//   }
+// }
