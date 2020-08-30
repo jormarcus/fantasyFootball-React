@@ -1,12 +1,12 @@
-import axios from 'axios';
-import history from '../history';
-import { serviceContext } from '../services/serviceContext';
+import axios from "axios";
+import history from "../history";
+import { serviceContext, authServiceContext } from "../services/serviceContext";
 
 /**
  * ACTIONS
  */
-export const SET_USER = 'SET_USER';
-export const REMOVE_USER = 'REMOVE_USER';
+export const SET_USER = "SET_USER";
+export const REMOVE_USER = "REMOVE_USER";
 
 /**
  * ACTION CREATORS
@@ -17,18 +17,42 @@ const removeUser = () => ({ type: REMOVE_USER });
 function formatUserDTO({ username, first_name, last_name, email }) {
   return {
     userName: username,
-    firstName: first_name,
-    lastName: last_name,
-    email: email
+    firstName: first_name ? first_name : "",
+    lastName: last_name ? last_name : "",
+    email: email ? email : "",
   };
 }
 
 /**
  * THUNK CREATORS
  */
+
+export function signIn(username, password) {
+  return async (dispatch) => {
+    let res;
+    try {
+      res = await axios.post(`${authServiceContext}auth/`, {
+        username,
+        password,
+      });
+    } catch (authError) {
+      return dispatch(setUser({ error: authError }));
+    }
+
+    try {
+      dispatch(setUser(formatUserDTO(res.data)));
+      sessionStorage.setItem("token", res.data["token"]);
+      console.log(res.data["token"]);
+      history.push("/");
+    } catch (dispatchOrHistoryErr) {
+      console.error(dispatchOrHistoryErr);
+    }
+  };
+}
+
 export const getUser = () => async (dispatch) => {
   try {
-    const res = await axios.get('/auth/me');
+    const res = await axios.get("/auth/me");
     dispatch(getUser(res.data));
   } catch (err) {
     console.error(err);
@@ -44,7 +68,7 @@ export function signUp(username, password, first_name, last_name, email) {
         password,
         first_name,
         last_name,
-        email
+        email,
       });
     } catch (authError) {
       return dispatch(setUser({ error: authError }));
@@ -52,7 +76,7 @@ export function signUp(username, password, first_name, last_name, email) {
 
     try {
       dispatch(setUser(formatUserDTO(res.data)));
-      history.push('/');
+      history.push("/");
     } catch (dispatchOrHistoryErr) {
       console.error(dispatchOrHistoryErr);
     }
@@ -61,9 +85,9 @@ export function signUp(username, password, first_name, last_name, email) {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post('/auth/logout');
+    await axios.post("/auth/logout");
     dispatch(removeUser());
-    history.push('/login');
+    history.push("/login");
   } catch (err) {
     console.error(err);
   }
