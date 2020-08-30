@@ -1,14 +1,14 @@
-import { GET_USER, REMOVE_USER } from '../actions/userActions';
+import { SET_USER, REMOVE_USER } from '../actions/userActions';
 
 const initialState = {};
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
-      return action.user
+    case SET_USER:
+      return action.user;
     case REMOVE_USER:
-      return initialState
+      return initialState;
     default:
-      return state
+      return state;
   }
 }
