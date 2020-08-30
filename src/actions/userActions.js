@@ -1,16 +1,17 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios';
+import history from '../history';
+import { serviceContext } from '../services/serviceContext';
 
 /**
  * ACTIONS
  */
-export const GET_USER = "GET_USER";
-export const REMOVE_USER = "REMOVE_USER";
+export const SET_USER = 'SET_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 
 /**
  * ACTION CREATORS
  */
-const getUser = (user) => ({ type: GET_USER, user });
+const setUser = (user) => ({ type: SET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 
 function formatUserDTO({ username, first_name, last_name, email }) {
@@ -18,31 +19,40 @@ function formatUserDTO({ username, first_name, last_name, email }) {
     userName: username,
     firstName: first_name,
     lastName: last_name,
-    email: email,
+    email: email
   };
 }
 
 /**
  * THUNK CREATORS
  */
-export function auth(username, password, first_name, last_name, email) {
+export const getUser = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/auth/me');
+    dispatch(getUser(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export function signUp(username, password, first_name, last_name, email) {
   return async (dispatch) => {
     let res;
     try {
-      res = await axios.post("http://127.0.0.1:8000/api/user/", {
+      res = await axios.post(`${serviceContext}/user/`, {
         username,
         password,
         first_name,
         last_name,
-        email,
+        email
       });
     } catch (authError) {
-      return dispatch(getUser({ error: authError }));
+      return dispatch(setUser({ error: authError }));
     }
 
     try {
-      dispatch(getUser(formatUserDTO(res.data)));
-      history.push("/");
+      dispatch(setUser(formatUserDTO(res.data)));
+      history.push('/');
     } catch (dispatchOrHistoryErr) {
       console.error(dispatchOrHistoryErr);
     }
@@ -51,9 +61,9 @@ export function auth(username, password, first_name, last_name, email) {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post("/auth/logout");
+    await axios.post('/auth/logout');
     dispatch(removeUser());
-    history.push("/login");
+    history.push('/login');
   } catch (err) {
     console.error(err);
   }

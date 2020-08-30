@@ -1,24 +1,24 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import { Button, TextField } from "@material-ui/core";
-import { green } from "@material-ui/core/colors";
-import { auth } from "../actions/userActions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Button, TextField } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+import { signUp } from '../actions/userActions';
 
 const validate = (values) => {
   const errors = {};
   console.log(values);
   if (!values.username) {
-    errors.username = "Required";
+    errors.username = 'Required';
   } else if (values.username.length > 15) {
-    errors.username = "Must be 15 characters or less";
+    errors.username = 'Must be 15 characters or less';
   }
   if (!values.password) {
-    errors.password = "Required";
+    errors.password = 'Required';
   }
   if (!values.email) {
-    errors.email = "Required";
+    errors.email = 'Required';
   }
 
   return errors;
@@ -43,25 +43,25 @@ const renderTextfield = ({
 const AuthFormComponent = (props) => {
   const useSignInTFStyles = makeStyles((theme) => ({
     root: {
-      "&:focused": {
-        color: "green",
+      '&:focused': {
+        color: 'green'
       },
-      "&:after": {
-        borderBottomColor: "green",
+      '&:after': {
+        borderBottomColor: 'green'
       },
-      width: "400px",
-    },
+      width: '400px'
+    }
   }));
 
   const StyleSignInBtn = withStyles((theme) => ({
     root: {
       color: theme.palette.getContrastText(green[500]),
       backgroundColor: green[500],
-      "&:hover": {
-        backgroundColor: green[700],
+      '&:hover': {
+        backgroundColor: green[700]
       },
-      width: 400,
-    },
+      width: 400
+    }
   }))(Button);
 
   const textFieldClasses = useSignInTFStyles();
@@ -135,10 +135,10 @@ const mapDispatch = (dispatch) => {
       const firstname = evt.target.firstname.value;
       const lastname = evt.target.lastname.value;
       const email = evt.target.email.value;
-      dispatch(auth(username, password, firstname, lastname, email));
-    },
+      dispatch(signUp(username, password, firstname, lastname, email));
+    }
   };
 };
 
 const AuthForm = connect(null, mapDispatch)(AuthFormComponent);
-export default reduxForm({ form: "AuthForm", validate })(AuthForm);
+export default reduxForm({ form: 'AuthForm', validate })(AuthForm);
