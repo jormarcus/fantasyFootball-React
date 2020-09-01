@@ -1,5 +1,7 @@
 import React from 'react';
 import CheatColumnPlayer from './CheatColumnPlayer';
+import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const CheatColumn = ({ className, playersByPos, title }) => {
   return (
@@ -12,6 +14,9 @@ const CheatColumn = ({ className, playersByPos, title }) => {
             <CheatColumnPlayer key={player.id} player={player} />
           ))}
         </ol>
+      </div>
+      <div className="load-more-icon">
+        <FontAwesomeIcon icon={faAngleDoubleDown} />
       </div>
     </div>
   );
