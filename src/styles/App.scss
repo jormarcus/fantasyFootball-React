@@ -23,37 +23,42 @@ body {
   margin-bottom: 15px;
 }
 
+.margin-left-10 {
+  margin-left: 10px;
+}
+
 .home-container {
+  margin: 5px 15px 15px 15px;
   display: grid;
   grid-gap: 15px;
   grid-template-areas:
-    "draft-tracker draft-tracker draft-tracker draft-tracker"
-    "roster draft-suggestions draft-suggestions draft-log"
-    "cheat-sheets cheat-sheets cheat-sheets draft-log"
-  }
-  .draft-tracker {
-    grid-area: draft-tracker;
-    background: rgb(126, 211, 122);
-  }
-  .roster {
-    grid-area: roster;
-    background: rgb(116, 202, 222);
-  }
-  .draft-suggestions {
-    grid-area: draft-suggestions;
-    background: #eee;
-  }
-  .draft-log {
-    grid-area: draft-log;
-    background: rgb(233, 182, 182);
-  }
-  .cheat-sheets {
-    grid-area: cheat-sheets;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(3, 1fr);
-    background: rgb(103, 107, 206);
-  }
+    'draft-tracker draft-tracker draft-tracker draft-tracker'
+    'roster draft-suggestions draft-suggestions draft-log'
+    'cheat-sheets cheat-sheets cheat-sheets cheat-sheets';
+}
+.draft-tracker {
+  grid-area: draft-tracker;
+  background: rgb(126, 211, 122);
+}
+.roster {
+  grid-area: roster;
+  background: rgb(116, 202, 222);
+}
+.draft-suggestions {
+  grid-area: draft-suggestions;
+  background: #eee;
+}
+.draft-log {
+  grid-area: draft-log;
+  background: rgb(233, 182, 182);
+}
+.cheat-sheets {
+  grid-area: cheat-sheets;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fff;
+}
 
 .cheat-col-hr {
   display: block;
@@ -65,11 +70,32 @@ body {
   border-width: 1px;
 }
 
+.load-more-icon {
+  padding-left: 40px;
+}
+
+.cheat-col-item {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+  font-size: 11px;
+  .cheat-col-player {
+    margin: 0px 5px 5px 20px;
+    font-size: 13px;
+    color: #2525ff;
+    text-decoration: none;
+  }
+}
+
+.cheat-col-title {
+  font-size: 20px;
+}
 
 // @media (min-width: 500px) {
 //   .home-container {
 //     grid-template-columns: 1fr 3fr;
-//     grid-template-areas: 
+//     grid-template-areas:
 //     'draft-tracker' 'draft-tracker'
 //     'draft-log' 'roster'
 //     'draft-suggestions' 'draft-suggestions'
@@ -80,7 +106,7 @@ body {
 // @media (min-width: 700px) {
 //   .home-container {
 //     grid-template-columns: 1fr 4fr 1fr;
-//     grid-template-areas: 
+//     grid-template-areas:
 //     'draft-tracker' 'draft-tracker' 'draft-tracker'
 //     'roster' 'draft-suggestions' 'draft-log'
 //     'cheat-sheets' 'cheat-sheets' 'cheat-sheets'

@@ -1,25 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CheatColumn from './CheatColumn';
 
 const CheatSheat = (props) => {
+  const {
+    overall,
+    quarterbacks,
+    runningbacks,
+    wideReceivers,
+    tightEnds,
+    kickers
+  } = props;
   return (
-    <div>
-      <h3>Cheat Sheat</h3>
-      <ol type="1">
-        {props.players && props.players.length > 0 ?
-          props.players.map((player) => (
-            <li>{player.name}</li>
-          ))
-          : 'No players available'
-        }
-      </ol>
-    </div>
-  )
-}
+    <React.Fragment>
+      <CheatColumn
+        className="margin-left-10"
+        playersByPos={overall}
+        title="Overall"
+      />
+      <CheatColumn playersByPos={quarterbacks} title="QB" />
+      <CheatColumn playersByPos={runningbacks} title="RB" />
+      <CheatColumn
+        className="margin-left-10"
+        playersByPos={wideReceivers}
+        title="WR"
+      />
+      <CheatColumn playersByPos={tightEnds} title="TE" />
+      <CheatColumn playersByPos={kickers} title="K" />
+    </React.Fragment>
+  );
+};
 
-// store by players or players by position?
 const mapStateToProps = (state) => ({
-  players: state.playersReducer.playerList
+  overall: state.playersReducer.overall,
+  quarterbacks: state.playersReducer.quarterbacks,
+  runningbacks: state.playersReducer.runningbacks,
+  wideReceivers: state.playersReducer.wideReceivers,
+  tightEnds: state.playersReducer.tightEnds,
+  kickers: state.playersReducer.kickers
 });
 
-export default connect(mapStateToProps)(CheatSheat);
+export default connect(mapStateToProps, null)(CheatSheat);
