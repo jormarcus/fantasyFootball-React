@@ -1,13 +1,18 @@
-import { SET_PLAYER_LISTS } from '../actions/playerActions';
+import {
+  SET_DEFENSE_LIST,
+  SET_PLAYER_LISTS,
+  SET_PLAYERS_BY_POSITION
+} from '../actions/playerActions';
 
 const initialState = {
   playersList: [],
   overall: [],
   quarterbacks: [],
   runningbacks: [],
-  wideReceivers: [],
-  tightEnds: [],
-  kickers: []
+  widereceivers: [],
+  tightends: [],
+  kickers: [],
+  defense: []
 };
 
 export default function (state = initialState, action) {
@@ -19,9 +24,18 @@ export default function (state = initialState, action) {
         overall: action.overall,
         quarterbacks: action.quarterbacks,
         runningbacks: action.runningbacks,
-        wideReceivers: action.wideReceivers,
-        tightEnds: action.tightEnds,
+        widereceivers: action.wideReceivers,
+        tightends: action.tightEnds,
         kickers: action.kickers
+      };
+    case SET_PLAYERS_BY_POSITION:
+      const newState = { ...state };
+      newState[action.position] = action.playersByPos;
+      return newState;
+    case SET_DEFENSE_LIST:
+      return {
+        ...state,
+        defense: action.defense
       };
     default:
       return state;
