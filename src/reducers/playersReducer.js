@@ -24,8 +24,8 @@ export default function (state = initialState, action) {
         overall: action.overall,
         quarterbacks: action.quarterbacks,
         runningbacks: action.runningbacks,
-        widereceivers: action.wideReceivers,
-        tightends: action.tightEnds,
+        widereceivers: action.widereceivers,
+        tightends: action.tightends,
         kickers: action.kickers,
         defense: action.defense
       };
