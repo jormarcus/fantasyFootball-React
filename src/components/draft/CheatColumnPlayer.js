@@ -66,7 +66,11 @@ const CheatColumnPlayer = ({ player }) => {
         expandingCardProps={expandingCardProps}
         instantOpenOnClick={true}
       >
-        <div className="cheat-col-player">{player.name}</div>
+        <div
+          className={`cheat-col-player ${player.is_drafted ? 'isDrafted' : ''}`}
+        >
+          {player.name}
+        </div>
       </HoverCard>
       <div>{player.team}</div>
     </Link>
