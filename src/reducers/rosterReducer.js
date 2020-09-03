@@ -1,6 +1,11 @@
-import { DRAFT_PLAYER, ROSTER_TEAM_CHANGE } from '../actions/rosterActions';
+import {
+  DRAFT_PLAYER,
+  ROSTER_TEAM_CHANGE,
+  SET_FANTASY_TEAMS
+} from '../actions/rosterActions';
 
 const initialState = {
+  fantasyTeams: [],
   selectedTeam: null,
   QB: { name: 'Lamar Jackson', team: 'Ravens', bye: 'BYE 8' },
   RB1: { name: 'Todd Gurley', team: 'Falcons', bye: 'BYE 5' },
@@ -21,6 +26,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case SET_FANTASY_TEAMS:
+      return {
+        ...state,
+        fantasyTeams: action.fantasyTeams,
+        selectedTeam: action.fantasyTeams[0]
+      };
     case ROSTER_TEAM_CHANGE:
       return {
         ...state,
