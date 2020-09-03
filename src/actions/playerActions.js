@@ -1,18 +1,60 @@
-import axios from 'axios';
-import { serviceContext } from '../services/serviceContext';
-import { setLoadingStatus } from './commonActions';
+import axios from "axios";
+import { serviceContext } from "../services/serviceContext";
+import { setLoadingStatus } from "./commonActions";
 
-export const SET_PLAYER_LISTS = 'SET_PLAYER_LISTS';
-export const SET_DEFENSE_LIST = 'SET_DEFENSE_LIST';
-export const SET_PLAYERS_BY_POSITION = 'SET_PLAYERS_BY_POSITION';
+export const SET_PLAYER_LISTS = "SET_PLAYER_LISTS";
+export const SET_DEFENSE_LIST = "SET_DEFENSE_LIST";
+export const SET_PLAYERS_BY_POSITION = "SET_PLAYERS_BY_POSITION";
+export const SET_QUARTERBACKS = "SET_QUARTERBACKS";
+export const SET_RUNNINGBACKS = "SET_RUNNINGBACKS";
+export const SET_WIDERECEIVERS = "SET_WIDERECEIVERS";
+export const SET_TIGHTENDS = "SET_TIGHTENDS";
+export const SET_KICKERS = "SET_KICKERS";
+export const SET_DEFENSE = "SET_DEFENSE";
+
+function setQuarterbackList(quarterbacks) {
+  return {
+    type: SET_QUARTERBACKS,
+    quarterbacks,
+  };
+}
+const setRunningbacks = (runningbacks) => ({
+  type: SET_RUNNINGBACKS,
+  runningbacks,
+});
+
+function setWidereceivers(wideReceivers) {
+  return {
+    type: SET_QUARTERBACKS,
+    wideReceivers,
+  };
+}
+function setTightends(tightends) {
+  return {
+    type: SET_QUARTERBACKS,
+    tightends,
+  };
+}
+function setKickers(kickers) {
+  return {
+    type: SET_QUARTERBACKS,
+    kickers,
+  };
+}
+function setDEFENSE(defense) {
+  return {
+    type: SET_QUARTERBACKS,
+    defense,
+  };
+}
 
 const setPlayerList = (
   playerList,
   overall,
   quarterbacks,
   runningbacks,
-  wideReceivers,
-  tightEnds,
+  widereceivers,
+  tightends,
   kickers
 ) => ({
   type: SET_PLAYER_LISTS,
@@ -20,42 +62,43 @@ const setPlayerList = (
   overall,
   quarterbacks,
   runningbacks,
-  wideReceivers,
-  tightEnds,
-  kickers
+  widereceivers,
+  tightends,
+  kickers,
 });
 
 const setDefenseList = (defense) => ({
   type: SET_DEFENSE_LIST,
-  defense
+  defense,
 });
 
 const setPlayersByPos = (playersByPos, position) => ({
   type: SET_PLAYERS_BY_POSITION,
   playersByPos,
-  position
+  position,
 });
 
 export function getPlayers() {
   return async (dispatch) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
+    console.log(token);
     try {
       const res = await axios.get(`${serviceContext}/player/`, {
         headers: {
-          Authorization: `token ${token}`
-        }
+          Authorization: `token ${token}`,
+        },
       });
       if (res.data) {
         const players = res.data;
         const overall = [];
         const quarterbacks = [];
         const runningbacks = [];
-        const wideReceivers = [];
-        const tightEnds = [];
+        const widereceivers = [];
+        const tightends = [];
         const kickers = [];
         for (const player of players) {
           switch (player.position) {
-            case 'QB':
+            case "QB":
               if (quarterbacks.length < 25) {
                 quarterbacks.push(player);
               }
@@ -64,22 +107,22 @@ export function getPlayers() {
                 overall.push(player);
               }
               break;
-            case 'RB':
+            case "RB":
               if (runningbacks.length < 25) {
                 runningbacks.push(player);
               }
               break;
-            case 'WR':
-              if (wideReceivers.length < 25) {
-                wideReceivers.push(player);
+            case "WR":
+              if (widereceivers.length < 25) {
+                widereceivers.push(player);
               }
               break;
-            case 'TE':
-              if (tightEnds.length < 25) {
-                tightEnds.push(player);
+            case "TE":
+              if (tightends.length < 25) {
+                tightends.push(player);
               }
               break;
-            case 'K':
+            case "K":
               if (kickers.length < 25) {
                 kickers.push(player);
               }
@@ -94,8 +137,8 @@ export function getPlayers() {
             overall,
             quarterbacks,
             runningbacks,
-            wideReceivers,
-            tightEnds,
+            widereceivers,
+            tightends,
             kickers
           )
         );
@@ -110,7 +153,7 @@ export function getPlayers() {
 export function getPlayersByPos(position, startIndex = 0, chunkSize = 25) {
   return async (dispatch, getState) => {
     position = position.toLowerCase();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const playerState = getState().playersReducer;
     startIndex =
       playerState[position] && Array.isArray(playerState[position])
@@ -121,8 +164,8 @@ export function getPlayersByPos(position, startIndex = 0, chunkSize = 25) {
         `${serviceContext}/player/${position}?startIndex=${startIndex}?chunkSize=${chunkSize}`,
         {
           headers: {
-            Authorization: `token ${token}`
-          }
+            Authorization: `token ${token}`,
+          },
         }
       );
 
@@ -138,11 +181,11 @@ export function getPlayersByPos(position, startIndex = 0, chunkSize = 25) {
 export function getDefenseList() {
   return async (dispatch) => {
     try {
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem("token");
       const res = await axios.get(`${serviceContext}/defense`, {
         headers: {
-          Authorization: `token ${token}`
-        }
+          Authorization: `token ${token}`,
+        },
       });
 
       if (res.data) {
