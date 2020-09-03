@@ -10,13 +10,14 @@ const dropdownStyles = {
 
 const DraftRoster = (props) => {
   return (
-    <div className="roster-content">
+    <div className='roster-content'>
       <Dropdown
-        placeholder="Select an option"
-        label="Roster"
+        placeholder='Select an option'
+        label='Roster'
         options={props.fantasyTeams}
         styles={dropdownStyles}
         onChange={props.onRosterTeamChange}
+        defaultSelectedKey={props.selectedTeam}
       />
       <RosterGrid />
     </div>
@@ -24,14 +25,13 @@ const DraftRoster = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  fantasyTeams: [
-    { key: 'jordan', text: 'Jordans Team' },
-    { key: 'flurry', text: 'Flurrys Team' }
-  ]
+  fantasyTeams: state.rosterReducer.fantasyTeams,
+  selectedTeam: state.rosterReducer.selectedTeam
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onRosterTeamChange: (fanTeam) => {
+  onRosterTeamChange: (evt, fanTeam) => {
+    console.log(evt);
     console.log('Team change val: ', fanTeam);
     dispatch(onRosterTeamChange(fanTeam));
   }

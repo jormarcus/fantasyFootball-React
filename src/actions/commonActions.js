@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { serviceContext } from '../services/serviceContext';
 import { getPlayers } from './playerActions';
-import { setUser } from './userActions';
+import { setFantasyTeams } from './rosterActions';
 
 export const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
 
@@ -15,7 +15,13 @@ export function loadInitialData() {
   return async (dispatch) => {
     try {
       const res = await axios.get(`${serviceContext}/user/`);
-      dispatch(setUser(res.data));
+      if (res.data && res.data.length > 0) {
+        res.data.forEach((team) => {
+          team.key = team.id;
+          team.text = team.username;
+        });
+      }
+      dispatch(setFantasyTeams(res.data));
     } catch (err) {
       console.error(err);
     }
