@@ -40,6 +40,8 @@ body {
 .draft-tracker {
   grid-area: draft-tracker;
   background: rgb(126, 211, 122);
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px grey;
 }
 .roster {
   grid-area: roster;
@@ -59,11 +61,13 @@ body {
   grid-area: draft-suggestions;
   background: #f9f9fb;
   border-radius: 10px;
+  box-shadow: 2px 2px 3px grey;
 }
 .draft-log {
   grid-area: draft-log;
   background: rgb(233, 182, 182);
   border-radius: 10px;
+  box-shadow: 2px 2px 3px grey;
 }
 .cheat-sheets {
   grid-area: cheat-sheets;
@@ -71,6 +75,7 @@ body {
   grid-gap: 20px;
   grid-template-columns: repeat(3, 1fr);
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .roster-content {

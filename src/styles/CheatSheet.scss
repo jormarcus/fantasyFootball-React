@@ -1,7 +1,13 @@
 .cheat-col {
-  background: #fff;
+  background: #f9f9fb;
   border-radius: 10px;
   box-shadow: 2px 2px 3px grey;
+}
+
+.cheat-col-title {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 .cheat-col-hr {
@@ -25,14 +31,11 @@
   text-decoration: none;
   color: black;
   font-size: 11px;
+  margin: 3px 30px 7px 20px;
   .cheat-col-player {
-    margin: 0px 5px 5px 20px;
     font-size: 13px;
-    color: #2525ff;
+    color: #06c;
     text-decoration: none;
+    white-space: nowrap;
   }
-}
-
-.cheat-col-title {
-  font-size: 20px;
 }
