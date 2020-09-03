@@ -1,4 +1,5 @@
 @import 'Login';
+@import 'CheatSheet';
 
 * {
   padding: 0;
@@ -12,7 +13,7 @@ html {
 }
 
 body {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -42,7 +43,10 @@ body {
 }
 .roster {
   grid-area: roster;
-  background: rgb(116, 202, 222);
+  background: #eee;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px grey;
+  width: 280px;
 }
 .draft-suggestions {
   grid-area: draft-suggestions;
@@ -57,40 +61,26 @@ body {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(3, 1fr);
-  background: #fff;
+  background: #eee;
 }
 
-.cheat-col-hr {
-  display: block;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: inset;
-  border-width: 1px;
+.roster-content {
+  padding-left: 10px;
+  padding-bottom: 15px;
 }
 
-.load-more-icon {
-  position: relative;
-  left: 50%;
-}
-
-.cheat-col-item {
+.roster-grid-row {
+  max-width: 250px;
   display: flex;
   justify-content: space-between;
-  text-decoration: none;
-  color: black;
-  font-size: 11px;
-  .cheat-col-player {
-    margin: 0px 5px 5px 20px;
-    font-size: 13px;
-    color: #2525ff;
-    text-decoration: none;
-  }
+  background: #fff;
+  padding: 10px 5px;
+  font-size: 10px;
+  border-bottom: 0.5px solid #eee;
 }
 
-.cheat-col-title {
-  font-size: 20px;
+.roster-grid-row:hover {
+  background: #e7f9ff;
 }
 
 // @media (min-width: 500px) {

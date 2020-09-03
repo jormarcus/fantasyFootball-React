@@ -1,0 +1,38 @@
+.cheat-col {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px grey;
+}
+
+.cheat-col-hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+.load-more-icon {
+  position: relative;
+  left: 50%;
+}
+
+.cheat-col-item {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+  font-size: 11px;
+  .cheat-col-player {
+    margin: 0px 5px 5px 20px;
+    font-size: 13px;
+    color: #2525ff;
+    text-decoration: none;
+  }
+}
+
+.cheat-col-title {
+  font-size: 20px;
+}

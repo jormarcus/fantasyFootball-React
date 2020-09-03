@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dropdown } from '@fluentui/react';
 import { onRosterTeamChange } from '../../actions/rosterActions';
+import RosterGrid from './RosterGrid';
 
 const dropdownStyles = {
-  dropdown: { width: 300 }
+  dropdown: { width: 250, marginBottom: 20 }
 };
 
 const DraftRoster = (props) => {
   return (
-    <React.Fragment>
+    <div className="roster-content">
       <Dropdown
         placeholder="Select an option"
         label="Roster"
@@ -17,7 +18,8 @@ const DraftRoster = (props) => {
         styles={dropdownStyles}
         onChange={props.onRosterTeamChange}
       />
-    </React.Fragment>
+      <RosterGrid />
+    </div>
   );
 };
 
@@ -29,9 +31,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onRosterTeamChange: (value) => {
-    console.log('Team change val: ', value);
-    dispatch(onRosterTeamChange(value));
+  onRosterTeamChange: (fanTeam) => {
+    console.log('Team change val: ', fanTeam);
+    dispatch(onRosterTeamChange(fanTeam));
   }
 });
 
