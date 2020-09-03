@@ -3,12 +3,19 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as formReducer } from 'redux-form';
-import { userReducer, playersReducer } from './reducers';
+import {
+  userReducer,
+  playersReducer,
+  rosterReducer,
+  commonReducer
+} from './reducers';
 
 const combinedReducer = combineReducers({
   form: formReducer,
   userReducer: userReducer,
-  playersReducer: playersReducer
+  playersReducer: playersReducer,
+  rosterReducer: rosterReducer,
+  commonReducer: commonReducer
 });
 
 const middleware = composeWithDevTools(

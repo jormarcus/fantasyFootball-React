@@ -10,7 +10,9 @@ class HomePage extends React.Component {
     // load player list
     // load roster
     // load draft history
-    this.props.loadInitialData();
+    if (this.props.isLoading) {
+      this.props.loadInitialData();
+    }
   }
   render() {
     return (
@@ -58,6 +60,10 @@ class HomePage extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  isLoading: state.commonReducer.isLoading
+});
+
 const mapDispatchToProps = (dispatch) => {
   return {
     loadInitialData() {
@@ -66,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
