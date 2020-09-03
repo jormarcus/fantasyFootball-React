@@ -11,7 +11,7 @@ export const REMOVE_USER = 'REMOVE_USER';
 /**
  * ACTION CREATORS
  */
-const setUser = (user) => ({ type: SET_USER, user });
+export const setUser = (user) => ({ type: SET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 
 function formatUserDTO({ username, first_name, last_name, email }) {
@@ -41,7 +41,7 @@ export function signIn(username, password) {
 
     try {
       dispatch(setUser(formatUserDTO(res.data)));
-      sessionStorage.setItem('token', res.data['token']);
+      localStorage.setItem('token', res.data['token']);
       console.log(res.data['token']);
       history.push('/');
     } catch (dispatchOrHistoryErr) {
@@ -50,14 +50,14 @@ export function signIn(username, password) {
   };
 }
 
-export const getUser = () => async (dispatch) => {
+export async function getUser(dispatch) {
   try {
-    const res = await axios.get('/auth/me');
-    dispatch(getUser(res.data));
+    const res = await axios.get(`${serviceContext}/user/`);
+    dispatch(setUser(res.data));
   } catch (err) {
     console.error(err);
   }
-};
+}
 
 export function signUp(username, password, first_name, last_name, email) {
   return async (dispatch) => {
