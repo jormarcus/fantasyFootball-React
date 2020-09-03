@@ -1,9 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CheatColumnPlayer from './CheatColumnPlayer';
-import { getPlayersByPos } from '../../actions/playerActions';
+import React from "react";
+import { connect } from "react-redux";
+import { faAngleDoubleDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CheatColumnPlayer from "./CheatColumnPlayer";
+import { getPlayersByPos } from "../../actions/playerActions";
 
 const CheatColumn = ({ className, playersByPos, title, onLoadMorePlayers }) => {
   return (
@@ -32,7 +32,7 @@ const CheatColumn = ({ className, playersByPos, title, onLoadMorePlayers }) => {
 const mapDispatchToProps = (dispatch) => ({
   onLoadMorePlayers: (position) => {
     dispatch(getPlayersByPos(position));
-  }
+  },
 });
 
 export default connect(null, mapDispatchToProps)(CheatColumn);
