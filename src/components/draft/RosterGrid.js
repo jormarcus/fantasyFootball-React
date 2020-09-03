@@ -2,37 +2,39 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const RosterGridItem = ({ player, posLabel }) => (
-  <div className="roster-grid-row">
-    <div>{posLabel}</div>
+  <tr className="roster-grid-row">
+    <td className="pos">{posLabel}</td>
     {player ? (
       <React.Fragment>
-        <div>{player.name}</div>
-        <div>{player.team}</div>
-        <div>{player.bye}</div>
+        <td className="name">{player.name}</td>
+        <td className="team">{player.team}</td>
+        <td className="bye">{player.bye}</td>
       </React.Fragment>
     ) : null}
-  </div>
+  </tr>
 );
 
 const RosterGrid = (props) => {
   return (
-    <div className="roster-grid">
-      <RosterGridItem posLabel={'QB'} player={props.QB} />
-      <RosterGridItem posLabel={'RB1'} player={props.RB1} />
-      <RosterGridItem posLabel={'RB2'} player={props.RB2} />
-      <RosterGridItem posLabel={'WR1'} player={props.WR1} />
-      <RosterGridItem posLabel={'WR2'} player={props.WR2} />
-      <RosterGridItem posLabel={'TE'} player={props.TE} />
-      <RosterGridItem posLabel={'FLEX1'} player={props.FLEX1} />
-      <RosterGridItem posLabel={'FLEX2'} player={props.FLEX2} />
-      <RosterGridItem posLabel={'K'} player={props.K} />
-      <RosterGridItem posLabel={'DEF'} player={props.DEF} />
-      <RosterGridItem posLabel={'BN1'} player={props.BN1} />
-      <RosterGridItem posLabel={'BN2'} player={props.BN2} />
-      <RosterGridItem posLabel={'BN3'} player={props.BN3} />
-      <RosterGridItem posLabel={'BN4'} player={props.BN4} />
-      <RosterGridItem posLabel={'BN5'} player={props.BN5} />
-    </div>
+    <table className="roster-grid">
+      <tbody>
+        <RosterGridItem posLabel={'QB'} player={props.QB} />
+        <RosterGridItem posLabel={'RB1'} player={props.RB1} />
+        <RosterGridItem posLabel={'RB2'} player={props.RB2} />
+        <RosterGridItem posLabel={'WR1'} player={props.WR1} />
+        <RosterGridItem posLabel={'WR2'} player={props.WR2} />
+        <RosterGridItem posLabel={'TE'} player={props.TE} />
+        <RosterGridItem posLabel={'FLEX1'} player={props.FLEX1} />
+        <RosterGridItem posLabel={'FLEX2'} player={props.FLEX2} />
+        <RosterGridItem posLabel={'K'} player={props.K} />
+        <RosterGridItem posLabel={'DEF'} player={props.DEF} />
+        <RosterGridItem posLabel={'BN1'} player={props.BN1} />
+        <RosterGridItem posLabel={'BN2'} player={props.BN2} />
+        <RosterGridItem posLabel={'BN3'} player={props.BN3} />
+        <RosterGridItem posLabel={'BN4'} player={props.BN4} />
+        <RosterGridItem posLabel={'BN5'} player={props.BN5} />
+      </tbody>
+    </table>
   );
 };
 

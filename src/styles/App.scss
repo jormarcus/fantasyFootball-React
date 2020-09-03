@@ -47,6 +47,13 @@ body {
   border-radius: 10px;
   box-shadow: 2px 2px 3px grey;
   width: 280px;
+  table {
+    border-collapse: collapse;
+    color: #48494a;
+    td {
+      padding: 4px;
+    }
+  }
 }
 .draft-suggestions {
   grid-area: draft-suggestions;
@@ -74,11 +81,22 @@ body {
 
 .roster-grid-row {
   max-width: 250px;
-  display: flex;
-  justify-content: space-between;
   padding: 10px 5px;
-  font-size: 10px;
+  font-size: 12px;
   border-bottom: 0.5px solid #eee;
+  .pos {
+    min-width: 40px;
+  }
+  .name {
+    min-width: 110px;
+    white-space: nowrap;
+  }
+  .team {
+    min-width: 60px;
+  }
+  .bye {
+    min-width: 20px;
+  }
 }
 
 .roster-grid-row:hover {
